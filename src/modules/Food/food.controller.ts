@@ -34,5 +34,4 @@ export class FoodController {
         return body;
     }
 
-
 }
