@@ -1,4 +1,7 @@
-import { Body, Controller, Get, Param, Post, Patch, Put } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Patch, Put, ParseIntPipe } from "@nestjs/common";
+import { CreateFoodDTO } from "./dtos/create-food.dto";
+import { UpdatePartialFoodDTO } from "./dtos/update-partial-food.dto";
+import { UpdateFoodDTO } from "./dtos/update-food.dto";
 
 @Controller("food")
 export class FoodController {
@@ -14,17 +17,20 @@ export class FoodController {
     }
 
     @Post()
-    async registerFood(@Body() body) {
+    async registerFood(@Body() body: CreateFoodDTO) {
         return body;
     }
 
-    @Patch()
-    async updatePartialFood(@Body() body) {
+    @Patch(":id")
+    async updatePartialFood(@Param("id", ParseIntPipe) id,
+        @Body() body: UpdatePartialFoodDTO
+    ) {
         return body;
     }
 
-    @Put()
-    async updateFood(@Body() body) {
+    @Put(":id")
+    async updateFood(@Param("id", ParseIntPipe) id,
+        @Body() body : UpdateFoodDTO) {
         return body;
     }
 
