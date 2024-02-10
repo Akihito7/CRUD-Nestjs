@@ -1,3 +1,17 @@
-import { CreateFoodDTO } from "./create-food.dto";
+import { IsNumber, IsOptional, IsString } from "@nestjs/class-validator";
 
-export class UpdateFoodDTO extends CreateFoodDTO {}
+
+export class UpdateFoodDTO {
+
+    @IsOptional()
+    @IsString()
+    name: string;
+    
+    @IsOptional()
+    @IsString()
+    description: string;
+    
+    @IsOptional()
+    @IsNumber()
+    value: number;
+}
