@@ -11,16 +11,16 @@ export class FoodService {
     constructor(private readonly prismaService: PrismaService) { }
 
     async getUniqueFood(id: number) {
-        return this.prismaService.food.findUnique({ where: { id } })
+        return this.prismaService.burger.findUnique({ where: { id } })
     }
 
     async getManyFood() {
-        return this.prismaService.food.findMany();
+        return this.prismaService.burger.findMany();
     }
 
     async registerFood(data: CreateFoodDTO) {
         try {
-            return this.prismaService.food.create({ data })
+            return this.prismaService.burger.create({ data })
         } catch (error) {
             throw new BadRequestException(error)
         }
@@ -34,7 +34,7 @@ export class FoodService {
         data.description = data.description ? data.description : ""
         data.value = data.value ? data.value : 0
 
-        return this.prismaService.food.update({
+        return this.prismaService.burger.update({
             data,
             where: { id }
         })
@@ -44,7 +44,7 @@ export class FoodService {
 
         if (!await this.foodExists(id)) throw new NotFoundException(id);
 
-        return await this.prismaService.food.update({
+        return await this.prismaService.burger.update({
             data,
             where: { id }
         })
@@ -54,11 +54,11 @@ export class FoodService {
 
     async deleteFood(id: number) {
         if (!await this.foodExists(id)) throw new NotFoundException("Food não encontrada!");
-        return this.prismaService.food.delete({ where: { id } })
+        return this.prismaService.burger.delete({ where: { id } })
     }
 
     async foodExists(id: number) {
-        return this.prismaService.food.count({ where: { id } })
+        return this.prismaService.burger.count({ where: { id } })
 
     }
 }
