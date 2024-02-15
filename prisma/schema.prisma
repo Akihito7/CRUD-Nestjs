@@ -18,7 +18,7 @@ model users {
   id          Int       @id @default(autoincrement())
   name        String    @db.VarChar(63)
   email       String    @db.VarChar(127)
-  password    String    @db.VarChar(45)
+  password    String    @db.VarChar(227)
   created_at  DateTime  @default(now()) @db.Timestamp(0)
   update_at   DateTime  @default(now()) @db.Timestamp(0)
   birthday_at DateTime? @db.Timestamp(0)
